@@ -100,9 +100,9 @@ const numbers = [
 const findMissingNumber = (arr) => {
   const maxNumber = 100; // Maximum number in the range
 
-  for (let i = 1; i <= maxNumber; i++) {
+  for (let i = 1; i <= maxNumber; i++) { //running loop to check each number present or not 
     if (!numbers.includes(i)) {
-      return i;
+      return i; // If the number is not present ite will return the number else it will return  -1
     }
   }
   return -1;
