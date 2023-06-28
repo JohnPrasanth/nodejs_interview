@@ -27,7 +27,7 @@ const initializeDBAndServer = async () => {
 initializeDBAndServer();
 // Add customer API call
 app.post("/users/", async (request, response) => {
-  const { username, name, gender, location } = request.body;
+  const { username, name, gender,phoneNumber } = request.body;
   const hashedPassword = await bcrypt.hash(request.body.password, 10);
   // checking existing customer verification
   const selectUserQuery = `SELECT * FROM user WHERE username = '${username}'`;
@@ -36,14 +36,14 @@ app.post("/users/", async (request, response) => {
     //adding new user
     const createUserQuery = `
       INSERT INTO 
-        user (username, name, password, gender, location) 
+        user (username, name, password, gender, phone_number) 
       VALUES 
         (
           '${username}', 
           '${name}',
           '${hashedPassword}', 
           '${gender}',
-          '${location}'
+          '${phoneNumber}'
         )`;
     const dbResponse = await db.run(createUserQuery);
     const newUserId = dbResponse.lastID;
